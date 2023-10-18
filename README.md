@@ -110,4 +110,4 @@ Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` f
 Happy coding!
 
 
-Matheus Cafalchio
+Matheus Cafalchio de Oliveira
