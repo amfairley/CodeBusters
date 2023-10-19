@@ -7,9 +7,18 @@ Ghost hunt is an interactive game where users have to click on randomly appearin
 
 
 ## User Stories
+- As a **user** I want to **understand the game rules** so that I can **play the game correctly**
 - As a **user** I want to **view the Game page** so that I can **click and start the game anytime**
 - As a **user** I want to **navigate the web app** so that I can **see more information about the game**
+- As a **user** I want to **view the Game page** so that I can **click and start the game anytime**
 - As a **user** I want to **select the number of questions** so that I can **dedicate the time I have available**
+- As a **user** I want to **see my score updating** so that I can **compete with my score**
+- As a **user** I want to **see the time limit** so that I can **compete with myself**
+- As a **user** I want to **hear the game audio/soundtrack** so that I can **feel the halloween spirit**
+- As a **revisitng user** I want to **be able to see my previous score records** so that I can **try to beat it**
+
+
+
 
 
 ## Wireframes
