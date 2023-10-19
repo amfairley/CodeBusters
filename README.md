@@ -3,19 +3,28 @@
 
 Ghost hunt is an interactive game where users have to click on randomly appearing ghosts to capture them. The objective of the game is to accumulate points by clicking on as many ghosts as possible within a specified time limit.
 
-![Responsive Mockup](https://github.com/diegocardenast/CodeBusters/blob/main/assets/images/)
+![Responsive Mockup](https://github.com/diegocardenast/CodeBusters/blob/main/assets/images/gameArea.png)
 
 
 ## User Stories
 - As a **user** I want to **understand the game rules** so that I can **play the game correctly**
+- As a **user** I want to **have a pop-up box** so that I can **see the game configuration and instructions at any time**
+- As a **user** I want to **have a reset button** so that I can **restart the game at any time if I feel like it**
 - As a **user** I want to **view the Game page** so that I can **click and start the game anytime**
 - As a **user** I want to **navigate the web app** so that I can **see more information about the game**
-- As a **user** I want to **view the Game page** so that I can **click and start the game anytime**
-- As a **user** I want to **select the number of questions** so that I can **dedicate the time I have available**
+- As a **user** I want to **have automatic changes in the size of the screen** so that I can **play in different devices**
 - As a **user** I want to **see my score updating** so that I can **compete with my score**
+- As a **user** I want to **know when I lost the game** so that I can **feel the difficulty level of it**
 - As a **user** I want to **see the time limit** so that I can **compete with myself**
+- As a **user** I want to **see the difference between good and bad ghost** so that I can **feel it is a fair game**
+- As a **user** I want to **have a ghost gallery** so that I can **know which ghost I am facing**
+- As a **user** I want to **have bonus challenges** so that I can **earn extra points**
+- As a **user** I want to **see halloween colours** so that I can **feel the halloween spirit in the game**
 - As a **user** I want to **hear the game audio/soundtrack** so that I can **feel the halloween spirit**
+- As a **user** I want to **know somehow if the difficulty level is increasing** so that I can **prepare mentally for the game speed/challenge**
+- As a **user** I want to **have a different background** so that I can **know if the difficulty level is increasing**
 - As a **revisitng user** I want to **be able to see my previous score records** so that I can **try to beat it**
+
 
 
 
