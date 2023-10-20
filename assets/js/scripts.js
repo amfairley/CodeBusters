@@ -56,6 +56,7 @@ function handleResize() {
     }
   }
 
+
   // Create the yard Background
   const yardBackground = [
     { img: 'assets/images/background/0_sky.png', speed: 0.0001 },
@@ -107,6 +108,36 @@ function handleResize() {
       ctx.drawImage(enemyImage, this.frame * this.spriteW, 0, this.spriteW, this.spriteH, this.x, this.y, this.width, this.height)
     }
   }
+
+  class MainChar {
+    constructor(image, speedModifier) {
+      this.x = 200;
+      this.y = CANVAS_H - CANVAS_H / 3.5 ;
+      this.speed = 0;
+      this.spriteW = 102;
+      this.spriteH = 140;
+      this.width = 25 + this.spriteW * CANVAS_W / 3000;
+      this.height = 25 + this.spriteW * CANVAS_W / 3000;
+      this.frame = 0;
+      this.innerMoveSpeed = 5;
+      this.image = image
+    }
+    update() {
+      this.x += this.speed;
+      if (gameFrame % this.innerMoveSpeed == 0) {
+        this.frame = this.frame >= 9 ? 0 : this.frame + 1;
+      }
+    }
+    draw() {
+      ctx.drawImage(this.image, this.frame * this.spriteW, 0, this.spriteW, this.spriteH, this.x, this.y, this.width+10, this.height+20);
+    }
+  }
+
+  const lantern = new Image();
+  lantern.src = 'assets/images/lantern_s.png';
+  mainChar = new MainChar(lantern, 1)
+
+
   const enemiesArray = [];
 
   for (let i = 0; i< 10; i++) {
@@ -123,6 +154,8 @@ function handleResize() {
       enemy.draw();
       enemy.update();
     });
+    mainChar.draw();
+    mainChar.update();
     gameFrame--;
     requestAnimationFrame(animate);
   }
