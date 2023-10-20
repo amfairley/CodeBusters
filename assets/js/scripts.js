@@ -81,15 +81,15 @@ function handleResize() {
 
   // Create ghosts enemies
   const enemyImage = new Image();
-  enemyImage.src = 'assets/images/monsters/ghosts.png';
+  enemyImage.src = 'assets/images/monsters/ghosts_2.png';
 
   class Enemy {
     constructor(frame) {
       this.x = Math.floor(Math.random() * CANVAS_W - CANVAS_W/10)
       this.y = Math.floor(Math.random() * CANVAS_H - CANVAS_H/10);
       this.speed = Math.random() + .1;
-      this.spriteW = 158;
-      this.spriteH = 152;
+      this.spriteW = 247; // before 158
+      this.spriteH = 240; // before 152
       this.width = 25 + this.spriteW * CANVAS_W / 3000;
       this.height = 25 + this.spriteH * CANVAS_W / 3000;
       this.frame = frame;
