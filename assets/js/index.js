@@ -16,3 +16,14 @@ function toggleAudio() {
 }
 
 volumeButton.addEventListener('click', toggleAudio);
+
+
+// Variables for modal box
+const closeInstructions = document.getElementById('close-instructions');
+const rulesModal = document.getElementById('rules');
+
+// Close instructions when clicking on button
+closeInstructions.onclick = function () {
+    rulesModal.style.display = "none";
+};
+
