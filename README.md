@@ -6,8 +6,9 @@ Ghost hunt is an interactive game where users have to click on randomly appearin
 <!--TODO: Add Am I responsive image-->
 ![Responsive Mockup](https://github.com/diegocardenast/CodeBusters/blob/main/assets/images/)
 
+## User Experience
 
-## User Stories
+### User Stories
 - As a **user** I want to **understand the game rules** so that I can **play the game correctly**
 - As a **user** I want to **view the Game page** so that I can **click and start the game anytime**
 - As a **user** I want to **navigate the web app** so that I can **see more information about the game**
@@ -22,6 +23,10 @@ Ghost hunt is an interactive game where users have to click on randomly appearin
 
 Tasks, sprints and planning can be seen in the [CodeBusters Team GitHub Project](https://github.com/users/diegocardenast/projects/1). A total of 5 mini sprints were planned and executed, making easier the tracking of activities and the assignation of efforts along the Hackathon.
 
+### Colour Palette
+The colour palette was generated from the background image using [Tools PicsArt](https://tools.picsart.com/color/palette-generator/?colors=D8A56C-2D244C-955637-6C4346-697986-3D5980-394D71-6B89A4).
+
+![Colour palette](https://i.ibb.co/t47Lyp5/Screenshot-2023-10-19-at-21-18-27.png "Colour palette")
 
 ## Wireframes
 
@@ -34,6 +39,7 @@ __Gameplay__
 ![Gameplay1](https://github.com/diegocardenast/CodeBusters/blob/main/assets/images/readme/wireframeGameplay1.png)
 
 ![Gameplay2](https://github.com/diegocardenast/CodeBusters/blob/main/assets/images/readme/wireframeGameplay2.png)
+
 
 
 ## Features
