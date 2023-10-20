@@ -24,7 +24,14 @@
    "workbench.colorTheme": "Visual Studio Dark",
    "terminal.integrated.gpuAcceleration": "canvas",
    "editor.defaultFormatter": "HookyQR.beautify",
+<<<<<<< Updated upstream
    "[javascript]": {
       "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
    }
+=======
+   "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+   },
+   "livePreview.defaultPreviewPath": "/game.html"
+>>>>>>> Stashed changes
 }
