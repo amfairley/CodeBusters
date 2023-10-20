@@ -79,12 +79,12 @@ a {
 
 /* Instructions container */
 
-/* Instructions closing button */
+/* Closing button for instructions */
 #close-instructions {
-    color: #6B89A4;
-    float: right;
     font-size: 1.5rem;
     font-weight: bold;
   }
 
- 
+ .fa-ghost {
+   color: #ff6346;
+ }
