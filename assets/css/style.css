@@ -1,0 +1,19 @@
+h1 {
+    color: tomato;
+}
+
+/* Game  */
+body {
+    background-color: black;
+}
+
+#canvas1 {
+    border: 5px solid tomato;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+}

@@ -20,8 +20,11 @@
       "**/core.python*": true,
       "**/CVS": true
    },
-   "files.autoSave": "off",
+   "files.autoSave": "afterDelay",
    "workbench.colorTheme": "Visual Studio Dark",
    "terminal.integrated.gpuAcceleration": "canvas",
-   "editor.defaultFormatter": "HookyQR.beautify"
+   "editor.defaultFormatter": "HookyQR.beautify",
+   "[javascript]": {
+      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+   }
 }
