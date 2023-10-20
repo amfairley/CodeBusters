@@ -65,19 +65,19 @@ function handleResize() {
 
 
   class Enemy {
-    constructor() {
-      this.x = 200;
-      this.y = 100;
+    constructor(frame) {
+      this.x = Math.floor(Math.random() * CANVAS_W - CANVAS_W/10)
+      this.y = Math.floor(Math.random() * CANVAS_H - CANVAS_H/10);
       this.speed = Math.random() ;
       this.spriteW = 158;
       this.spriteH = 152;
       this.width = this.spriteW  / 2;
       this.height = this.spriteH / 2;
-      this.frame = 1;
+      this.frame = frame;
     }
     update(){
-      this.x += Math.sin(this.speed + 2);
-      this.y += this.speed;
+      this.x += Math.sin(this.speed * Math.random() * 2);
+      this.y += Math.sin(this.speed * Math.random() * 1 );
       if (gameFrame % 8 == 0) this.frame >= 4 ? this.frame = 0 : this.frame++;
     }
     draw() {
@@ -87,7 +87,7 @@ function handleResize() {
   const enemiesArray = [];
 
   for (let i = 0; i< 10; i++) {
-    enemiesArray.push(new Enemy());
+    enemiesArray.push(new Enemy(i));
   }
 
   function animate() {
