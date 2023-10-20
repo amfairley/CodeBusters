@@ -12,6 +12,28 @@ function handleResize() {
   let gameSpeed = 1;
   let gameFrame = 0;
 
+
+  class InputHandler {
+    constructor() {
+        this.keys = [];
+        this.touchX = null;
+        this.touchY = null;
+
+        window.addEventListener('touchstart', this.handleTouchStart.bind(this));
+        window.addEventListener('click', this.handleClick.bind(this));
+    }
+
+    handleTouchStart(e) {
+        this.touchX = e.touches[0].clientX;
+        this.touchY = e.touches[0].clientY;
+    }
+
+    handleClick(e) {
+        this.touchX = e.clientX;
+        this.touchY = e.clientY;
+    }
+}
+
   class Layer {
     constructor(image, speedModifier) {
       this.x = 0;
@@ -106,5 +128,6 @@ function handleResize() {
   animate();
 }
 handleResize()
+
 window.addEventListener("resize", handleResize);
 
