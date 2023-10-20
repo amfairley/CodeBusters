@@ -26,22 +26,23 @@
 </head>
 
 <body>
-    <!-- Title -->
-    <!-- <div class="container-fluid text-center">
-        <div id="game-title">
-            <h1>Code Busters</h1>
-        </div>
-    </div> -->
     <!-- Menu -->
     <div class="container-fluid text-center">
+        <audio autoplay loop>
+            <source src="assets\audio\WTF! Ghost!.mp3" type="audio/mp3">
+            <source src="assets\audio\WTF! Ghost!.ogg" type="audio/ogg">
+            <p id="musicerror">Unfortunately your device does not support our music. Please feel free to imagine spooky
+                music!
+            </p>
+        </audio>
 
         <div id="menu">
             <div id="logo">
                 <img src="./assets/images/ghostHuntersLogo.png" alt="Ghost hunters logo">
             </div>
             <div id="menu-buttons">
-                <button class="btn btn-light btn-lg">
-                    <i class="fa-solid fa-volume-high"></i>
+                <button id="volumeButton" class="btn-light btn-lg">
+                    <i id="volumeIcon" class="fa-solid fa-volume-high"></i>
                 </button>
                 <a href="game.html">
                     <button type="button" class="btn btn-light btn-lg">
@@ -80,6 +81,8 @@
             </div>
         </div>
     </div>
+
+
 
     <script src="assets/js/scripts.js"></script>
 </body>
