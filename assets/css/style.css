@@ -52,7 +52,8 @@ body {
 
 
 /* IndexPage Menu Buttons */
-#menu-buttons .btn {
+#menu-buttons .btn,
+#volumeButton {
     background-color: #f4f4f4;
     color: tomato;
     font-family: 'Creepster', cursive;
@@ -65,7 +66,8 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-#menu-buttons .btn:hover {
+#menu-buttons .btn:hover,
+#volumeButton:hover {
     background-color: #2D244C;
     color: tomato;
     border: 2px solid #955637;
