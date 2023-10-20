@@ -1,6 +1,7 @@
 
 
 function handleResize() {
+  // this function redraw the game in the new size
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
   const newWidth = window.innerWidth;
@@ -14,6 +15,7 @@ function handleResize() {
 
 
   class InputHandler {
+    // This will be used to pop the Ghosts
     constructor() {
         this.keys = [];
         this.touchX = null;
@@ -34,6 +36,7 @@ function handleResize() {
     }
 }
 
+// Layer Class to create background
   class Layer {
     constructor(image, speedModifier) {
       this.x = 0;
@@ -55,9 +58,6 @@ function handleResize() {
       ctx.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
     }
   }
-
-
-  // Create the yard Background
   const yardBackground = [
     { img: 'assets/images/background/0_sky.png', speed: 0.0001 },
     { img: 'assets/images/background/1_moon.png', speed: 0.0002 },
@@ -78,14 +78,12 @@ function handleResize() {
     });
     return backgrounds;
   }
-
   const background = createBackground(yardBackground);
-
   // end background
 
+  // Create ghosts enemies
   const enemyImage = new Image();
   enemyImage.src = 'assets/images/monsters/ghosts.png';
-
 
   class Enemy {
     constructor(frame) {
@@ -108,7 +106,15 @@ function handleResize() {
       ctx.drawImage(enemyImage, this.frame * this.spriteW, 0, this.spriteW, this.spriteH, this.x, this.y, this.width, this.height)
     }
   }
+  const enemiesArray = [];
 
+  for (let i = 0; i< 10; i++) {
+    enemiesArray.push(new Enemy(i));
+  }
+  // End of the enemies
+
+
+// Create Jack lantern
   class MainChar {
     constructor(image, speedModifier) {
       this.x = 200;
@@ -136,24 +142,24 @@ function handleResize() {
   const lantern = new Image();
   lantern.src = 'assets/images/lantern_s.png';
   mainChar = new MainChar(lantern, 1)
+  //  end of Jack lantern
 
 
-  const enemiesArray = [];
-
-  for (let i = 0; i< 10; i++) {
-    enemiesArray.push(new Enemy(i));
-  }
-
+  // Main function
   function animate() {
+    // clear canvas
     ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+    // draw and update background
     background.forEach(back => {
       back.draw();
       back.update();
     });
+    // draw and update enemies
     enemiesArray.forEach(enemy => {
       enemy.draw();
       enemy.update();
     });
+    // draw and update main char
     mainChar.draw();
     mainChar.update();
     gameFrame--;
@@ -161,7 +167,8 @@ function handleResize() {
   }
   animate();
 }
+// run the game
 handleResize()
-
+// look for resizes on the screen
 window.addEventListener("resize", handleResize);
 
