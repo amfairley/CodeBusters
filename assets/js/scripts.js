@@ -90,17 +90,18 @@ function handleResize() {
     constructor(frame) {
       this.x = Math.floor(Math.random() * CANVAS_W - CANVAS_W/10)
       this.y = Math.floor(Math.random() * CANVAS_H - CANVAS_H/10);
-      this.speed = Math.random() ;
+      this.speed = Math.random() + .1;
       this.spriteW = 158;
       this.spriteH = 152;
-      this.width = this.spriteW  / 2;
-      this.height = this.spriteH / 2;
+      this.width = 25 + this.spriteW * CANVAS_W / 3000;
+      this.height = 25 + this.spriteH * CANVAS_W / 3000;
       this.frame = frame;
+      this.innerMoveSpeed = Math.floor(Math.random() * 10 + 5)
     }
     update(){
-      this.x += Math.sin(this.speed * Math.random() * 2);
-      this.y += Math.sin(this.speed * Math.random() * 1 );
-      if (gameFrame % 8 == 0) this.frame >= 4 ? this.frame = 0 : this.frame++;
+      this.x += this.speed * Math.random() * 5;
+      this.y += this.speed * Math.random() * 5;
+      if (gameFrame % this.innerMoveSpeed == 0) this.frame >= 4 ? this.frame = 0 : this.frame++;
     }
     draw() {
       ctx.drawImage(enemyImage, this.frame * this.spriteW, 0, this.spriteW, this.spriteH, this.x, this.y, this.width, this.height)
