@@ -1,4 +1,5 @@
 import url('https://fonts.googleapis.com/css?family=Creepster|Frijole|Nosifer|Eater|Astloch');
+
 h1 {
     color: tomato;
 }
@@ -17,4 +18,43 @@ body {
     transform: translate(-50%, -50%);
     width: 80%;
     height: 70%;
+}
+
+
+/* Index */
+#menu {
+    border: 5px solid tomato;
+    background-color: white;
+    position: absolute;
+    background-image: url(../images/background/fullbackground.png);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 70%;
+}
+
+
+/* IndexPage Menu Buttons */
+#menu-buttons .btn {
+    background-color: #f4f4f4;
+    color: tomato;
+    font-family: 'Creepster', cursive;
+    border: white;
+    border-radius: 50%;
+    margin: 10px;
+    padding: 10px;
+    width: 70px;
+    height: 70px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#menu-buttons .btn:hover {
+    background-color: #2D244C;
+    color: #955637;
+}
+
+
+a {
+    text-decoration: none;
 }
