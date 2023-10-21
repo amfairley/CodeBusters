@@ -11,7 +11,7 @@ function handleResize() {
   let gameSpeed = 5;
   let gameFrame = 0;
   // let LIVES = 3
-
+  const offset = this.canvas.getBoundingClientRect();
 
   function hasCollided(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
     // Detect if the distance is smaller than 2 radius
@@ -174,7 +174,7 @@ function handleResize() {
       this.height = 25 + (this.spriteH * CANVAS_W) / 3000;
       this.frame = frame;
       this.innerMoveSpeed = Math.floor(Math.random() * 10 + 5);
-      this.radius = Math.floor(Math.min(this.height, this.height)/1.8)
+      this.radius = this.spriteH / 4;
       this.centerX = 0
       this.centerY = 0
     }
@@ -204,6 +204,9 @@ function handleResize() {
         this.width,
         this.height
       );
+      // ctx.beginPath();
+      // ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
+      // ctx.stroke()
     }
     updateDraw(jackX, jackY) {
       this.update(jackX, jackY);
@@ -231,15 +234,13 @@ function handleResize() {
       this.innerMoveSpeed = 5;
       this.image = image;
       this.radius = Math.floor(Math.min(this.height, this.height)/1.8)
-      this.centerX = 0
-      this.centerY = 0
+      this.centerX = this.x + this.width / 2;
+      this.centerY = this.y + this.height / 2;
     }
     update() {
       this.x += this.speed;
       if (gameFrame % this.innerMoveSpeed == 0) {
         this.frame = this.frame >= 9 ? 0 : this.frame + 1;
-        this.centerX = this.x + this.width / 2;
-        this.centerY = this.y + this.height / 2;
       }
     }
     draw() {
@@ -254,6 +255,9 @@ function handleResize() {
         this.width + 10,
         this.height + 20
       );
+      // ctx.beginPath();
+      // ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
+      // ctx.stroke()
     }
     updateDraw() {
       this.update();
@@ -282,19 +286,23 @@ function handleResize() {
     // draw and update enemies
     let wasClicked = false;
     for (let i = 0; i < enemiesArray.length; i++) {
-      const enemy = enemiesArray[i]; // Access the current enemy in the loop
+      const enemy = enemiesArray[i]; 
+      // Check for clicked ghosts
       wasClicked = hasCollided(inputs.touchX, inputs.touchY, enemy.centerX, enemy.centerY, 1, enemy.radius);
       if (wasClicked) {
         enemiesArray.splice(i, 1);
-        i--; // Decrement i to account for the removed enemy
+        i--;
         wasClicked = false;
         explosions.push(new Explosion(inputs.touchX, inputs.touchY))
         explosions[0].update()
         explosions[0].draw()
         inputs.clear();
-
-        // If needed, add code here to create an explosion or perform other actions.
       } else {
+        if (hasCollided(mainChar.centerX, mainChar.centerY, enemy.centerX, enemy.centerY, mainChar.radius, enemy.radius)) {
+          console.log("COLISION")
+          enemiesArray.splice(i, 1);
+          i--;
+        }
         enemy.updateDraw(mainChar.x, mainChar.y);
       }
     }
@@ -308,8 +316,8 @@ function handleResize() {
         explosions.splice(i, 1);
         console.log("remove explosion");
       }
+      }
     }
-  }
     // draw and update main char
     mainChar.updateDraw()
     gameFrame--;
