@@ -187,3 +187,8 @@ a {
  .set-of-rules {
     text-align: left;
  }
+
+ #jack-image {
+    width: 2.5rem;
+    height: auto;
+ }
