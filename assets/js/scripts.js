@@ -75,6 +75,22 @@ function handleResize() {
     { img: "assets/images/background/road_stone.png", speed: 1 },
   ];
 
+  const forestBackground = [
+    { img: "assets/images/background2/layer-1g.png", speed: 0.0001 },
+    { img: "assets/images/background2/layer-2g.png", speed: 0.0002 },
+    { img: "assets/images/background2/layer-3g.png", speed: 0.1 },
+    { img: "assets/images/background2/layer-4g.png", speed: 0.1 },
+    { img: "assets/images/background2/layer-5g.png", speed: 1 },
+  ];
+
+  const cityBackground = [
+    { img: "assets/images/background/0_sky.png", speed: 0.0001 },
+    { img: "assets/images/background3/layer-2g.png", speed: 0.0002 },
+    { img: "assets/images/background3/layer-3g.png", speed: 0.1 },
+    { img: "assets/images/background3/layer-4g.png", speed: 0.1 },
+    { img: "assets/images/background3/layer-5g.png", speed: 1 },
+  ];
+
   function createBackground(images) {
     const backgrounds = images.map((img) => {
       const back = new Image();
@@ -83,7 +99,7 @@ function handleResize() {
     });
     return backgrounds;
   }
-  const background = createBackground(yardBackground);
+  const background = createBackground(cityBackground);
   // end background
 
   // Create ghosts enemies
