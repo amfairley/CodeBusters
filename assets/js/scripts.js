@@ -11,6 +11,7 @@ function handleResize() {
   let gameSpeed = 3;
   let gameFrame = 0;
 
+
   class InputHandler {
     // This will be used to pop the Ghosts
     constructor() {
@@ -239,6 +240,8 @@ function handleResize() {
 
     gameFrame--;
     requestAnimationFrame(animate);
+    
+    
   }
   animate();
   
@@ -248,3 +251,52 @@ handleResize();
 // look for resizes on the screen
 window.addEventListener("resize", handleResize);
 // add input handler
+
+
+
+/**
+ * Start Game timer (source: https://daily-dev-tips.com/posts/vanilla-javascript-timer/)
+ */
+
+const timer = document.getElementById('timer');
+let timerInterval;
+
+startTimer = () => {
+  // Firs twe start by clearing the existing timer, in case of a restart
+  clearInterval(timerInterval);
+  // Then we clear the variables
+  let second = 0,
+    minute = 0,
+    hour = 0;
+
+  // Next we set a interval every 1000 ms
+  timerInterval = setInterval(function () {
+
+    // We set the timer text to include a two digit representation
+    timer.innerHTML =
+      (hour ? hour + ':' : '') +
+      (minute < 10 ? '0' + minute : minute) +
+      ':' +
+      (second < 10 ? '0' + second : second);
+
+    // Next, we add a new second since one second is passed
+    second++;
+
+    // We check if the second equals 60 "one minute"
+    if (second == 60) {
+      // If so, we add a minute and reset our seconds to 0
+      minute++;
+      second = 0;
+    }
+
+    // If we hit 60 minutes "one hour" we reset the minutes and plus an hour
+    if (minute == 60) {
+      hour++;
+      minute = 0;
+    }
+  }, 1000);
+};
+//  end of game timer
+
+//We start the game timer
+startTimer();
