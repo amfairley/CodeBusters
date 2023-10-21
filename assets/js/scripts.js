@@ -5,38 +5,61 @@ function handleResize() {
   const newWidth = window.innerWidth;
   const newHeight = window.innerHeight;
 
-  const CANVAS_W = (canvas.width = newWidth - newWidth * 0.1);
-  const CANVAS_H = (canvas.height = newHeight - newHeight * 0.1);
+  const CANVAS_W = (canvas.width = newWidth - newWidth * 0.2);
+  const CANVAS_H = (canvas.height = newHeight - newHeight * 0.3);
 
-  let gameSpeed = 3;
+  let gameSpeed = 5;
   let gameFrame = 0;
+  // let LIVES = 3
 
 
-  class InputHandler {
-    // This will be used to pop the Ghosts
-    constructor() {
-      this.keys = [];
-      this.touchX = null;
-      this.touchY = null;
-
-      window.addEventListener("touchstart", this.handleTouchStart.bind(this));
-      window.addEventListener("click", this.handleClick.bind(this));
+  function hasCollided(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
+    // Detect if the distance is smaller than 2 radius
+    // https://www.youtube.com/watch?v=GFO_txvwK_c&t=6524s
+    if (centerX1  == null ) {
+      return false;
     }
-
-    handleTouchStart(e) {
-      this.touchX = e.touches[0].clientX;
-      this.touchY = e.touches[0].clientY;
+    const dx = centerX1 - centerX2;
+    const dy = centerY1 - centerY2;
+    const distance = Math.sqrt(dx*dx + dy*dy)
+    const radiusSum = radius1 + radius2;
+    if (distance < radiusSum){
+      return true;
     }
-
-    handleClick(e) {
-      this.touchX = e.clientX;
-      this.touchY = e.clientY;
-    }
+    return false;
   }
 
 
-  // Layer Class to create background
-  class Layer {
+  class InputHandler {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.touchX = null;
+      this.touchY = null;
+      
+      canvas.addEventListener("touchstart", this.handleTouchStart.bind(this));
+      canvas.addEventListener("click", this.handleClick.bind(this));
+    }
+  
+    handleTouchStart(e) {
+      const rect = this.canvas.getBoundingClientRect();
+      this.touchX = e.touches[0].clientX - rect.left;
+      this.touchY = e.touches[0].clientY - rect.top;
+    }
+  
+    handleClick(e) {
+      const rect = this.canvas.getBoundingClientRect();
+      this.touchX = e.clientX - rect.left;
+      this.touchY = e.clientY - rect.top;
+    }
+  
+    clear() {
+      this.touchX = null;
+      this.touchY = null;
+    }
+  }
+
+  // Background class
+  class Background {
     constructor(image, speedModifier) {
       this.x = 0;
       this.y = 0;
@@ -62,8 +85,12 @@ function handleResize() {
         this.height
       );
     }
+    updateDraw() {
+      this.update();
+      this.draw();
+    }
   }
-  const yardBackground = [
+  const scenes = [[
     { img: "assets/images/background/0_sky.png", speed: 0.0001 },
     { img: "assets/images/background/1_moon.png", speed: 0.0002 },
     { img: "assets/images/background/2_landscape.png", speed: 0.002 },
@@ -73,38 +100,68 @@ function handleResize() {
     { img: "assets/images/background/6_mist_a.png", speed: 0.3 },
     { img: "assets/images/background/7_road.png", speed: 0.5 },
     { img: "assets/images/background/road_stone.png", speed: 1 },
-  ];
-
-  const forestBackground = [
+  ],[
     { img: "assets/images/background2/layer-1g.png", speed: 0.0001 },
     { img: "assets/images/background2/layer-2g.png", speed: 0.0002 },
     { img: "assets/images/background2/layer-3g.png", speed: 0.1 },
     { img: "assets/images/background2/layer-4g.png", speed: 0.1 },
     { img: "assets/images/background2/layer-5g.png", speed: 1 },
-  ];
-
-  const cityBackground = [
+  ], [
     { img: "assets/images/background/0_sky.png", speed: 0.0001 },
     { img: "assets/images/background3/layer-2g.png", speed: 0.0002 },
     { img: "assets/images/background3/layer-3g.png", speed: 0.1 },
     { img: "assets/images/background3/layer-4g.png", speed: 0.1 },
     { img: "assets/images/background3/layer-5g.png", speed: 1 },
-  ];
+  ]]
 
   function createBackground(images) {
     const backgrounds = images.map((img) => {
       const back = new Image();
       back.src = img.img;
-      return new Layer(back, img.speed);
+      return new Background(back, img.speed);
     });
     return backgrounds;
   }
-  const background = createBackground(cityBackground);
+  const background = createBackground(scenes[1]);
   // end background
 
   // Create ghosts enemies
   const enemyImage = new Image();
   enemyImage.src = "assets/images/monsters/ghosts_inverted.png";
+
+
+  class Explosion {
+    constructor(x, y) {
+      this.speed = Math.random() + 0.1;
+      this.spriteW = 100;
+      this.spriteH = 90;
+      this.width = this.spriteW;
+      this.height = this.spriteH;
+      this.x = x - this.width / 2;
+      this.y = y - this.height / 2;
+      this.image = new Image();
+      this.image.src = "assets/images/exploded/boom.png";
+      this.frame = 0;
+    }
+    update() {
+      if (gameFrame % 5 == 0)
+        this.frame++;
+    }
+    draw() {
+      ctx.drawImage(
+        this.image,
+        this.frame * this.spriteW,
+        0,
+        this.spriteW,
+        this.spriteH,
+        this.x,
+        this.y,
+        this.width,
+        this.height
+      );
+    }
+  }
+
 
   class Enemy {
     constructor(frame) {
@@ -121,9 +178,15 @@ function handleResize() {
       this.centerX = 0
       this.centerY = 0
     }
-    update() {
-      this.x -= this.speed * Math.random() * 5;
-      this.y += this.speed * Math.random() * 5;
+    update(jackX, jackY) {
+      const dx = jackX - this.x;
+      const dy = jackY - this.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const directionX = dx / distance;
+      const directionY = dy / distance;
+      this.x += this.speed * directionX;
+      this.y += this.speed * directionY;
+
       if (gameFrame % this.innerMoveSpeed == 0)
         this.frame >= 4 ? (this.frame = 0) : this.frame++;
         this.centerX = this.x + this.width / 2;
@@ -141,6 +204,10 @@ function handleResize() {
         this.width,
         this.height
       );
+    }
+    updateDraw(jackX, jackY) {
+      this.update(jackX, jackY);
+      this.draw();
     }
   }
   const enemiesArray = [];
@@ -188,6 +255,11 @@ function handleResize() {
         this.height + 20
       );
     }
+    updateDraw() {
+      this.update();
+      this.draw();
+    }
+
   }
 
   const lantern = new Image();
@@ -195,53 +267,53 @@ function handleResize() {
   mainChar = new MainChar(lantern, 1);
   //  end of Jack lantern
 
-
-  function hasColide(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
-    // Detect if the distance is smaller than 2 radius
-    // https://www.youtube.com/watch?v=GFO_txvwK_c&t=6524s
-    const dx = centerX1 - centerX2;
-    const dy = centerY1 - centerY2;
-    const distance = Math.sqrt(dx*dx + dy*dy)
-    const radiusSum = radius1 + radius2;
-    if (distance < radiusSum){
-      return true;
-    }
-    return false;
-  }
-
+  const inputs = new InputHandler(canvas);
+  let explosions = [];
   // Main function
+
+
   function animate() {
     // clear canvas
     ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
     // draw and update background
     background.forEach((back) => {
-      back.draw();
-      back.update();
+      back.updateDraw();
     });
     // draw and update enemies
-    enemiesArray.forEach((enemy) => {
-      enemy.draw();
-      enemy.update();
-      ctx.strokeStyle = "red";
-      ctx.beginPath();
-      ctx.arc(enemy.x + enemy.width/2, enemy.y + enemy.height/2, enemy.radius, 0, 2 * Math.PI);
-      ctx.stroke();
-      if (hasColide(enemy.centerX, enemy.centerY, mainChar.centerX, mainChar.centerY, enemy.radius, mainChar.radius)) console.log("COLISION DETECTED");
-    });
+    let wasClicked = false;
+    for (let i = 0; i < enemiesArray.length; i++) {
+      const enemy = enemiesArray[i]; // Access the current enemy in the loop
+      wasClicked = hasCollided(inputs.touchX, inputs.touchY, enemy.centerX, enemy.centerY, 1, enemy.radius);
+      if (wasClicked) {
+        enemiesArray.splice(i, 1);
+        i--; // Decrement i to account for the removed enemy
+        wasClicked = false;
+        explosions.push(new Explosion(inputs.touchX, inputs.touchY))
+        explosions[0].update()
+        explosions[0].draw()
+        inputs.clear();
+
+        // If needed, add code here to create an explosion or perform other actions.
+      } else {
+        enemy.updateDraw(mainChar.x, mainChar.y);
+      }
+    }
+    
+  // make explosion
+  if (explosions.length > 0) {
+    for (let i = explosions.length - 1; i >= 0; i--) {
+      explosions[i].update();
+      explosions[i].draw();
+      if (explosions[i].frame > 5) {
+        explosions.splice(i, 1);
+        console.log("remove explosion");
+      }
+    }
+  }
     // draw and update main char
-    mainChar.draw();
-    mainChar.update();
-
-    // Visualize colision to be removed
-    // ctx.strokeStyle = "red";
-    // ctx.beginPath();
-    // ctx.arc(mainChar.centerX, mainChar.centerY, mainChar.radius, 0, 2 * Math.PI);
-    // ctx.stroke();
-
+    mainChar.updateDraw()
     gameFrame--;
     requestAnimationFrame(animate);
-    
-    
   }
   animate();
   
