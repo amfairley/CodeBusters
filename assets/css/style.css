@@ -17,7 +17,7 @@ h1 {
 .game-info-bar {
     width: 80%;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -79,11 +79,19 @@ h1 {
     color: #ffffff; 
 }
 
-#ghosts-killed-container{
+#ghosts-killed{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+#ghosts-killed p {
+    white-space: pre;
+    font-family: Nosifer;
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 0%; 
 }
 
 /* Game  */
