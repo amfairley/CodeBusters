@@ -4,6 +4,31 @@ h1 {
     color: tomato;
 }
 
+/*game.html styling*/
+#gameaudio {
+    position: absolute;
+    bottom: 0;
+    right:0;
+    width:100%;
+    height:5%;
+    min-height: 21.5px;
+}
+
+#levelnamecenter {
+    width: 50%;
+    margin: auto;
+}
+
+#levelname1 {
+    font-family: Astloch, Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: 3vw;
+    letter-spacing: 2px;
+    color:  #CA8639;
+    text-align: center;
+}
+
+
 /* Game  */
 body {
     background-color: black;
