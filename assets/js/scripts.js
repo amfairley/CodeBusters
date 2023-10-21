@@ -204,9 +204,9 @@ function handleResize() {
         this.width,
         this.height
       );
-      // ctx.beginPath();
-      // ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
-      // ctx.stroke()
+      ctx.beginPath();
+      ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
+      ctx.stroke()
     }
     updateDraw(jackX, jackY) {
       this.update(jackX, jackY);
@@ -255,9 +255,9 @@ function handleResize() {
         this.width + 10,
         this.height + 20
       );
-      // ctx.beginPath();
-      // ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
-      // ctx.stroke()
+      ctx.beginPath();
+      ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
+      ctx.stroke()
     }
     updateDraw() {
       this.update();
