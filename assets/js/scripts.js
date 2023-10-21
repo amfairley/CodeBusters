@@ -1,3 +1,4 @@
+
 function handleResize() {
   // this function redraw the game in the new size
   const canvas = document.getElementById("canvas");
@@ -8,7 +9,7 @@ function handleResize() {
   const CANVAS_W = (canvas.width = newWidth - newWidth * .1);
   const CANVAS_H = (canvas.height = newHeight - newHeight * .1);
 
-  let gameSpeed = 1;
+  let gameSpeed = 3;
   let gameFrame = 0;
 
 
@@ -81,22 +82,22 @@ function handleResize() {
 
   // Create ghosts enemies
   const enemyImage = new Image();
-  enemyImage.src = 'assets/images/monsters/ghosts_2.png';
+  enemyImage.src = 'assets/images/monsters/ghosts_inverted.png';
 
   class Enemy {
     constructor(frame) {
       this.x = Math.floor(Math.random() * CANVAS_W - CANVAS_W/10)
       this.y = Math.floor(Math.random() * CANVAS_H - CANVAS_H/10);
       this.speed = Math.random() + .1;
-      this.spriteW = 247; // before 158
-      this.spriteH = 240; // before 152
+      this.spriteW = 158;
+      this.spriteH = 152;
       this.width = 25 + this.spriteW * CANVAS_W / 3000;
       this.height = 25 + this.spriteH * CANVAS_W / 3000;
       this.frame = frame;
       this.innerMoveSpeed = Math.floor(Math.random() * 10 + 5)
     }
     update(){
-      this.x += this.speed * Math.random() * 5;
+      this.x -= this.speed * Math.random() * 5;
       this.y += this.speed * Math.random() * 5;
       if (gameFrame % this.innerMoveSpeed == 0) this.frame >= 4 ? this.frame = 0 : this.frame++;
     }
