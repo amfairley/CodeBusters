@@ -174,10 +174,19 @@ a {
 
 /* Closing button for instructions */
 #close-instructions {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
   }
 
  .fa-ghost {
    color: #ff6346;
+ }
+
+ .set-of-rules {
+    text-align: left;
+ }
+
+ #jack-image {
+    width: 2.5rem;
+    height: auto;
  }
