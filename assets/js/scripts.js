@@ -4,6 +4,12 @@ function handleResize() {
   const ctx = canvas.getContext("2d");
   const newWidth = window.innerWidth;
   const newHeight = window.innerHeight;
+const backgroundScreens = [
+    {id: 0, name:  "Ghostly Gathering Grounds"},
+    {id: 1, name:  "Spectral Shenanigans on Main street"},
+    {id: 2, name:  "The Lonesome Road"},
+    {id: 3, name:  "Spectral Harmony Yard"},
+  ]
 
   const CANVAS_W = (canvas.width = newWidth - newWidth * 0.2);
   const CANVAS_H = (canvas.height = newHeight - newHeight * 0.3);
@@ -11,6 +17,7 @@ function handleResize() {
   let gameSpeed = 1;
   let gameFrame = 0;
   let maxGhosts = 5;
+let STAGE = 0;
   const startBtn = document.getElementById("start-btn");
   const restartBtn = document.getElementById("end-game");
   const gameOverDisplay = document.getElementById("gameOver");
@@ -328,7 +335,7 @@ goBackToMenuButton.addEventListener('click', function(){
   }
 
   // Create all animations
-  const background = createBackground(scenes[0]);
+  let background = createBackground(scenes[STAGE]);
   const enemiesArray = [];
   const friendlyArray = [];
   const enemyImage = new Image();
@@ -438,6 +445,12 @@ goBackToMenuButton.addEventListener('click', function(){
     // update max enemies
     if (gameFrame % 300 === 0){
       max+=1;
+    }
+// Change stage
+    if (gameFrame % 500 === 0) {
+      STAGE++;
+      background = createBackground(scenes[STAGE])
+      levelname1.innerHTML = backgroundScreens[STAGE].name;
     }
     // update points and lives
     displayPoints.innerHTML = POINTS;
