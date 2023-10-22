@@ -18,7 +18,6 @@ function handleResize() {
   const displayLives = document.getElementById("player-lives");
   let POINTS = 0
   let LIVES = 3
-
 // Variable for Homepage button in game area
 const goBackToMenuButton = document.getElementById('go-back-to-menu');
 
@@ -27,7 +26,8 @@ goBackToMenuButton.addEventListener('click', function(){
   window.location.href = 'index.html';
 })
 
-gameOverDisplay.style.display = "none";
+  gameOverDisplay.style.display = "none";
+
   function hasCollided(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
     // Detect if the distance is smaller than 2 radius
     // https://www.youtube.com/watch?v=GFO_txvwK_c&t=6524s
@@ -147,13 +147,6 @@ gameOverDisplay.style.display = "none";
     });
     return backgrounds;
   }
-  const background = createBackground(scenes[3]);
-  // end background
-
-  // Create ghosts enemies
-  const enemyImage = new Image();
-  enemyImage.src = "assets/images/monsters/ghosts_inverted.png";
-
 
   class Explosion {
     constructor(x, y) {
@@ -186,7 +179,6 @@ gameOverDisplay.style.display = "none";
       );
     }
   }
-
 
   class Enemy {
     constructor(frame) {
@@ -229,23 +221,66 @@ gameOverDisplay.style.display = "none";
         this.width,
         this.height
       );
-      ctx.beginPath();
-      ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
-      ctx.stroke()
     }
     updateDraw(jackX, jackY) {
       this.update(jackX, jackY);
       this.draw();
     }
   }
-  const enemiesArray = [];
 
-  for (let i = 0; i < 10; i++) {
-    enemiesArray.push(new Enemy(i));
-  }
-  // End of the enemies
-
-  // Create Jack lantern
+  class FriendlyGhost {
+      constructor(frame) {
+        this.x = CANVAS_W / 4 + Math.floor(Math.random() * CANVAS_W - CANVAS_W / 10);
+        this.y = Math.floor(Math.random() * CANVAS_H - CANVAS_H / 10);
+        this.speed = Math.random() + 0.1 * gameSpeed;
+        this.spriteW = 158;
+        this.spriteH = 152;
+        this.width = 25 + (this.spriteW * CANVAS_W) / 3000;
+        this.height = 25 + (this.spriteH * CANVAS_W) / 3000;
+        this.frame = frame;
+        this.innerMoveSpeed = Math.floor(Math.random() * 2 + 8);
+        this.radius = this.spriteH / 4;
+        this.centerX = 0
+        this.centerY = 0
+        this.life = 50;
+      }
+      update(jackX, jackY) {
+        const dx = jackX - this.x;
+        const dy = jackY - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const directionX = dx / distance;
+        const directionY = dy / distance;
+        this.x += this.speed * directionX;
+        this.y += this.speed * directionY;
+  
+        if (gameFrame % this.innerMoveSpeed == 0)
+          this.frame >= 3 ? (this.frame = 0) : this.frame++;
+          this.centerX = this.x + this.width / 2;
+          this.centerY = this.y + this.height / 2;
+      }
+      draw() {
+        this.life++;
+        if (this.life > 200) {
+          return;
+        }
+        ctx.drawImage(
+          friendlyGhost,
+          this.frame * this.spriteW,
+          0,
+          this.spriteW,
+          this.spriteH,
+          this.x,
+          this.y,
+          this.width,
+          this.height
+        );
+      }
+      updateDraw(jackX, jackY) {
+        this.update(jackX, jackY);
+        this.draw();
+      }
+    }
+  
   class MainChar {
     constructor(image, speedModifier) {
       this.x = 200;
@@ -280,9 +315,9 @@ gameOverDisplay.style.display = "none";
         this.width + 10,
         this.height + 20
       );
-      ctx.beginPath();
-      ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
-      ctx.stroke()
+      // ctx.beginPath();
+      // ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
+      // ctx.stroke()
     }
     updateDraw() {
       this.update();
@@ -292,28 +327,39 @@ gameOverDisplay.style.display = "none";
 
   }
 
-  const lantern = new Image();
-  lantern.src = "assets/images/lantern_s.png";
-  mainChar = new MainChar(lantern, 1);
-  //  end of Jack lantern
+  // Create all animations
+  const background = createBackground(scenes[0]);
+  const enemiesArray = [];
+  const friendlyArray = [];
+  const enemyImage = new Image();
+  enemyImage.src = "assets/images/monsters/ghosts_inverted.png";
+  const friendlyGhost = new Image();
+  friendlyGhost.src = "assets/images/monsters/ghost2ani.png";
 
+  // Create initial ghosts
+  for (let i = 0; i < 7; i++) {
+    enemiesArray.push(new Enemy(i));
+    if (Math.random() <= .15) { 
+      friendlyArray.push(new FriendlyGhost(i));
+    }
+  }
+
+  const jack = new Image();
+  jack.src = "assets/images/lantern_s.png";
+  mainChar = new MainChar(jack, 1);
   const inputs = new InputHandler(canvas);
   let explosions = [];
+
   // Main function
-
-
   function animate() {
-    // clear canvas
     ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
-    // draw and update background
     background.forEach((back) => {
       back.updateDraw();
     });
-    // draw and update enemies
+    // Update enemies
     let wasClicked = false;
     for (let i = 0; i < enemiesArray.length; i++) {
       const enemy = enemiesArray[i]; 
-      // Check for clicked ghosts
       wasClicked = hasCollided(inputs.touchX, inputs.touchY, enemy.centerX, enemy.centerY, 1, enemy.radius);
       if (wasClicked) {
         enemiesArray.splice(i, 1);
@@ -327,7 +373,6 @@ gameOverDisplay.style.display = "none";
       } else {
         if (hasCollided(mainChar.centerX, mainChar.centerY, enemy.centerX, enemy.centerY, mainChar.radius, enemy.radius)) {
           if (LIVES === 1){
-            console.log("GAME OVER!!!")
             gameOverDisplay.style.display = "block";
             restartBtn.addEventListener("click", () => {
               gameOverDisplay.style.display = "none";
@@ -339,6 +384,26 @@ gameOverDisplay.style.display = "none";
         }
         enemy.updateDraw(mainChar.x, mainChar.y);
       }
+    }
+    // Update friendly ghosts
+    for (let i = 0; i < friendlyArray.length; i++) {
+      const friendly = friendlyArray[i]; 
+      wasClicked = hasCollided(inputs.touchX, inputs.touchY, friendly.centerX, friendly.centerY, 1, friendly.radius);
+      if (wasClicked) {
+        friendlyArray.splice(i, 1);
+        i--;
+        POINTS-=15;
+        wasClicked = false;
+        explosions.push(new Explosion(inputs.touchX, inputs.touchY))
+        explosions[0].update()
+        explosions[0].draw()
+        inputs.clear();
+        friendly.updateDraw(mainChar.x, mainChar.y);
+      } else if (friendly.life > 200) {
+        friendlyArray.splice(i, 1);
+        i--;
+      }
+      friendly.updateDraw(mainChar.x, mainChar.y);
     }
     
   // make explosion
@@ -354,16 +419,22 @@ gameOverDisplay.style.display = "none";
     }
     // draw and update main char
     mainChar.updateDraw()
+    
     gameFrame--;
     requestAnimationFrame(animate);
-
+    // Create new enemies
     if (enemiesArray.length < maxGhosts && (gameFrame % 2 == 0)) {
         enemiesArray.push(new Enemy(enemiesArray.length + 1));
+        if (Math.random() <= .15) { 
+          friendlyArray.push(new FriendlyGhost(friendlyArray.length + 1));
+        }
     }
+    // update game speed
     if (gameFrame % 1000 === 0){
       gameSpeed+=1;
     }
-    if (gameFrame % 10000 === 0){
+    // update max enemies
+    if (gameFrame % 300 === 0){
       max+=1;
     }
     // update points and lives
@@ -371,6 +442,7 @@ gameOverDisplay.style.display = "none";
     displayLives.innerHTML = LIVES;
   }
   animate();
+
 
   /**
    * Possible start button?
