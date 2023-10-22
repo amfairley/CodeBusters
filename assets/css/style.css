@@ -180,6 +180,10 @@ a {
     margin-top: 100px;
 }
 
+#monster-verse {
+    margin-top:100px;
+}
+
 /* Closing button for instructions */
 #close-instructions {
     font-size: 1.2rem;
