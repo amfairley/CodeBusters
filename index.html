@@ -37,7 +37,7 @@
     <title>CodeBusters</title>
   </head>
 
-  <body onload="get_scores(list_scores)">
+  <body>
     
     <!-- Menu -->
     <div class="container-fluid text-center">
@@ -100,6 +100,7 @@
           data-toggle="modal"
           data-target="#scoreBoard"
           aria-label="scoreboard button"
+          onload="get_scores(list_scores)"
           >
             <i class="fa-solid fa-ranking-star"></i>
           </button>
