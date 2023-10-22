@@ -57,14 +57,13 @@
           />
         </div>
         <div id="menu-buttons">
+
+          <!--VOLUME BUTTON-->
           <button id="volumeButton" class="btn-light btn-lg" aria-label="volume button">
             <i id="volumeIcon" class="fa-solid fa-volume-high"></i>
           </button>
-          <a href="game.html" aria-label="play game">
-            <button type="button" class="btn btn-light btn-lg" aria-label="play game button">
-              <i class="fa-solid fa-play"></i>
-            </button>
-          </a>
+
+          <!-- RULES BUTTON-->
           <button
             type="button"
             class="btn btn-light btn-lg"
@@ -74,15 +73,15 @@
           >
             <i class="fa-solid fa-gamepad"></i>
           </button>
-          <button 
-            type="button"
-            class="btn btn-light btn-lg"
-            data-toggle="modal"
-            data-target="#scoreBoard"
-            aria-label="scoreboard button"
-            >
-            <i class="fa-solid fa-ranking-star"></i>
-          </button>
+
+           <!-- PLAY BUTTON-->
+           <a href="game.html" aria-label="play game">
+            <button id="play-button" type="button" aria-label="play game button">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </a>
+
+           <!-- STORY BUTTON-->
         </button>
           <button 
             type="button"
@@ -94,6 +93,16 @@
           <i class="fa-solid fa-earth-europe"></i>
         </button>
 
+        <!-- SCOREBOARD BUTTON-->
+        <button 
+        type="button"
+        class="btn btn-light btn-lg"
+        data-toggle="modal"
+        data-target="#scoreBoard"
+        aria-label="scoreboard button"
+        >
+        <i class="fa-solid fa-ranking-star"></i>
+      </button>
 
         </div>
         
