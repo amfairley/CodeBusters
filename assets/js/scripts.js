@@ -8,10 +8,11 @@ function handleResize() {
   const CANVAS_W = (canvas.width = newWidth - newWidth * 0.2);
   const CANVAS_H = (canvas.height = newHeight - newHeight * 0.3);
 
-  let gameSpeed = 5;
+  let gameSpeed = 1;
   let gameFrame = 0;
+  let maxGhosts = 5;
   // let LIVES = 3
-  const offset = this.canvas.getBoundingClientRect();
+
 
   function hasCollided(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
     // Detect if the distance is smaller than 2 radius
@@ -122,7 +123,7 @@ function handleResize() {
     });
     return backgrounds;
   }
-  const background = createBackground(scenes[1]);
+  const background = createBackground(scenes[0]);
   // end background
 
   // Create ghosts enemies
@@ -165,15 +166,15 @@ function handleResize() {
 
   class Enemy {
     constructor(frame) {
-      this.x = Math.floor(Math.random() * CANVAS_W - CANVAS_W / 10);
+      this.x = CANVAS_W / 4 + Math.floor(Math.random() * CANVAS_W - CANVAS_W / 10);
       this.y = Math.floor(Math.random() * CANVAS_H - CANVAS_H / 10);
-      this.speed = Math.random() + 0.1;
+      this.speed = Math.random() + 0.1 * gameSpeed;
       this.spriteW = 158;
       this.spriteH = 152;
       this.width = 25 + (this.spriteW * CANVAS_W) / 3000;
       this.height = 25 + (this.spriteH * CANVAS_W) / 3000;
       this.frame = frame;
-      this.innerMoveSpeed = Math.floor(Math.random() * 10 + 5);
+      this.innerMoveSpeed = Math.floor(Math.random() * 2 + 8);
       this.radius = this.spriteH / 4;
       this.centerX = 0
       this.centerY = 0
@@ -264,6 +265,7 @@ function handleResize() {
       this.draw();
     }
 
+
   }
 
   const lantern = new Image();
@@ -322,6 +324,16 @@ function handleResize() {
     mainChar.updateDraw()
     gameFrame--;
     requestAnimationFrame(animate);
+
+    if (enemiesArray.length < maxGhosts && (gameFrame % 2 == 0)) {
+        enemiesArray.push(new Enemy(enemiesArray.length + 1));
+    }
+    if (gameFrame % 1000 === 0){
+      gameSpeed+=1;
+    }
+    if (gameFrame % 10000 === 0){
+      max+=1;
+    }
   }
   animate();
   
