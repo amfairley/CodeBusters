@@ -100,6 +100,53 @@ body {
     background: linear-gradient(45deg, #11021f, #021322);
 }
 
+#start-btn {
+    border: #ff6346;
+    background: #fff;
+    color: #1a0230;
+    position: absolute;
+    font-variant: small-caps;
+    font-weight: 800;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+#restart-btn {
+    background: #fff;
+    border: #ffc446;
+    color: #06021f;
+    font-variant: small-caps;
+    font-weight: 800;
+    width: 20%;
+    margin: 0 auto;
+}
+
+#game-over {
+    background: rgba(22, 3, 66, 0.8);
+    border: 4px solid #ffc446;
+    border-radius: 20px;
+    color: #ffffff;
+    position: absolute;
+    font-variant: small-caps;
+    font-size: 1.5vw;
+    text-align: center;
+    font-weight: 800;
+    width: 30%;
+    height: 30%;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
 #canvas {
     border: 4px solid #1a0230;
     border-radius: 10px;

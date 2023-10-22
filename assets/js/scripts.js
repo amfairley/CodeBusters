@@ -11,12 +11,15 @@ function handleResize() {
   let gameSpeed = 1;
   let gameFrame = 0;
   let maxGhosts = 5;
+  const startBtn = document.getElementById("start-btn");
+  const restartBtn = document.getElementById("restart-btn");
+  const gameOverDisplay = document.getElementById("game-over");
   const displayPoints = document.getElementById("ghosts-points");
   const displayLives = document.getElementById("player-lives");
   let POINTS = 0
   let LIVES = 3
 
-
+gameOverDisplay.style.display = "none";
   function hasCollided(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
     // Detect if the distance is smaller than 2 radius
     // https://www.youtube.com/watch?v=GFO_txvwK_c&t=6524s
@@ -317,6 +320,10 @@ function handleResize() {
         if (hasCollided(mainChar.centerX, mainChar.centerY, enemy.centerX, enemy.centerY, mainChar.radius, enemy.radius)) {
           if (LIVES === 1){
             console.log("GAME OVER!!!")
+            gameOverDisplay.style.display = "block";
+            restartBtn.addEventListener("click", () => {
+              gameOverDisplay.style.display = "none";
+           })
           }
           LIVES-=1;
           enemiesArray.splice(i, 1);
@@ -356,6 +363,14 @@ function handleResize() {
     displayLives.innerHTML = LIVES;
   }
   animate();
+
+  /**
+   * Possible start button?
+   */
+  //startBtn.addEventListener("click", () => {
+  //  animate();
+  //  startBtn.style.display = "none";
+ // })
   
 }
 // run the game
@@ -412,3 +427,101 @@ startTimer = () => {
 
 //We start the game timer
 startTimer();
+
+// Read scores.json with Fetch API
+
+const Errors = document.getElementById("error");
+
+function get_scores(callback) {
+  let file = "scores.json"
+  fetch(file, {cache: 'no-cache'})
+    .then(function(response){
+      //If the response is not OK
+      if(response.status !== 200){
+        Errors.innerHTML = response.status;
+      }
+      //If the response is OK
+      response.json().then(function(data){
+        let scores = JSON.stringify(data);
+        console.log(scores);
+        callback(scores);
+      });
+    })
+    // If there is an error
+    .catch(function(err){
+      Errors.innerHTML = err;
+    })
+}
+
+// Display High Score List
+
+const List = document.getElementById("highscores");
+
+var list_scores = function (scores) {
+  let object = JSON.parse(scores);
+  //lowest score saved for later
+  let lowest_score = object[9].score;
+  document.getElementById("lowscore").value = lowest_score;
+
+  //for loop
+  for (let i=0; i<object.length; i++) {
+    // console.log(object[i]);
+    let li = document.createElement("LI");
+    let text = document.createTextNode(object[i].name + " ... " + object[i].score)
+    li.appendChild(text);
+    List.appendChild(li);
+
+    if(i===0) {
+      li.setAttribute("class","top1");
+    }
+    if(i===1) {
+      li.setAttribute("class","top2");
+    }
+    if(i===2) {
+      li.setAttribute("class","top3");
+    }
+
+  }
+}
+
+//reload stuff
+function resetForm() {
+  while(list.hasChildNodes()) {
+    List.removeChild(List.firstChild)
+  }
+  // fetch data and make high score list
+  get_scores(list_scores);
+  // reset stuff
+  document.getElementById("score").value = 0;
+  score = 0;
+}
+
+// Submit Form
+
+//listen for clicking the submit button
+myform.addEventListener("submit", function(event){
+  //don't reload page
+  event.preventDefault();
+
+  // lowest high score
+  var tenth_score = document.getElementById("lowscore").value;
+
+  //if the player made the hs list, change message gif
+  if (score > tenth_score) {
+    document.getElementById("message").src="images/highscore.gif";
+    document.getElementById("message").alt="You made it on the high score list!";
+  }
+  else {
+    document.getElementById("message").src="images/good-luck.gif";
+    document.getElementById("message").alt="Good luck chump!";
+  }
+
+  // form data object
+  var formData = new FormData(this);
+
+  //POST fetch request
+  fetch()
+
+})
+
+// End scores section

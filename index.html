@@ -151,6 +151,7 @@
                 role="dialog"
                 aria-labelledby="scoreBoardLabel"
                 aria-hidden="true"
+                onload="get_scores(list_scores)"
               >
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -163,14 +164,16 @@
                       <p>
                       <img id="jack-image" src="assets/images/little-jack.png" alt="image of Jack">
                       </p>
+                      <div id="error"></div>
                       <p class="list-of-scores">
-                        <ol>
+                        <ol id="highscores">
                           <li><i class="fa-solid fa-ghost"></i></li>
                           <li><i class="fa-solid fa-ghost"></i></li>
                           <li><i class="fa-solid fa-ghost"></i></li>
                           <li><i class="fa-solid fa-ghost"></i></li>
                           <li><i class="fa-solid fa-ghost"></i></li>
                         </ol>
+                        <input id="lowscore" type="hidden">
                       </p>
                     </div>
                     <div class="modal-footer">
