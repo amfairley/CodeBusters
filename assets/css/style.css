@@ -98,8 +98,13 @@ h1 {
 }
 
 /* Monster-verse */
+.monster-description {
+    text-align: justify;
+}
+
 .monster-image {
-    width: 2.5rem;
+    margin-left: 40%;
+    width: 20%;
     height: auto;
 }
 /* Game  */
@@ -211,6 +216,7 @@ a {
 
 #monster-verse {
     margin-top:100px;
+    height: 80%;
 }
 
 /* Closing button for instructions */
