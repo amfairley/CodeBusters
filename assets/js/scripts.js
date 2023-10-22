@@ -19,6 +19,14 @@ function handleResize() {
   let POINTS = 0
   let LIVES = 3
 
+// Variable for Homepage button in game area
+const goBackToMenuButton = document.getElementById('go-back-to-menu');
+
+// Click event listener to homepage button in game area
+goBackToMenuButton.addEventListener('click', function(){
+  window.location.href = 'index.html';
+})
+
 gameOverDisplay.style.display = "none";
   function hasCollided(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
     // Detect if the distance is smaller than 2 radius
