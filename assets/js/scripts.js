@@ -11,12 +11,15 @@ function handleResize() {
   let gameSpeed = 1;
   let gameFrame = 0;
   let maxGhosts = 5;
+  const startBtn = document.getElementById("start-btn");
+  const restartBtn = document.getElementById("restart-btn");
+  const gameOverDisplay = document.getElementById("game-over");
   const displayPoints = document.getElementById("ghosts-points");
   const displayLives = document.getElementById("player-lives");
   let POINTS = 0
   let LIVES = 3
 
-
+gameOverDisplay.style.display = "none";
   function hasCollided(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
     // Detect if the distance is smaller than 2 radius
     // https://www.youtube.com/watch?v=GFO_txvwK_c&t=6524s
@@ -317,6 +320,10 @@ function handleResize() {
         if (hasCollided(mainChar.centerX, mainChar.centerY, enemy.centerX, enemy.centerY, mainChar.radius, enemy.radius)) {
           if (LIVES === 1){
             console.log("GAME OVER!!!")
+            gameOverDisplay.style.display = "block";
+            restartBtn.addEventListener("click", () => {
+              gameOverDisplay.style.display = "none";
+           })
           }
           LIVES-=1;
           enemiesArray.splice(i, 1);
@@ -356,6 +363,14 @@ function handleResize() {
     displayLives.innerHTML = LIVES;
   }
   animate();
+
+  /**
+   * Possible start button?
+   */
+  //startBtn.addEventListener("click", () => {
+  //  animate();
+  //  startBtn.style.display = "none";
+ // })
   
 }
 // run the game
