@@ -41,14 +41,17 @@ h1 {
     border: 1px solid rgba(54, 13, 150, 0.8);
     border-radius: 25px;
     box-shadow: 0px 0px 15px 1px rgb(50, 145, 189);
-    padding: 3px 0px 3px 0px;
+    padding: 0.7rem;
 }
 
 #player-lives-bar {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: right;
 
+}
+#player.lives {
+    align-items: right;
 }
 
 .jackLifeIcon{
@@ -234,19 +237,20 @@ a {
     width: 0.2rem;
     height: 0.2rem;
 } 
-#go-back-to-menu {
-    padding: 0.2;
-    font-size: 1.5rem;
-    border-radius: 1.3rem;
-}
 
  /* Return to Homepage button in the game page */
 #go-back-to-menu {
     padding: 0.1;
     font-size: 1.5rem;
-    border-radius: 1.3rem;
-    width: 3.1rem;
-    height: 2.7rem;
+    border-radius: 1.5rem;
+    width: auto;
+    height: auto;
+}
+
+#go-back-to-menu:hover {
+    background-color: #2D244C;
+    color: white;
+    border: 3px solid white;
 }
 
 /* Media query: tablets and larger (768px and up) */
