@@ -94,6 +94,11 @@ h1 {
     margin-bottom: 0%; 
 }
 
+/* Monster-verse */
+.monster-image {
+    width: 2.5rem;
+    height: auto;
+}
 /* Game  */
 body {
     background: linear-gradient(45deg, #11021f, #021322);
