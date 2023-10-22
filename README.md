@@ -31,17 +31,17 @@ The colour palette was generated from the background image using [Tools PicsArt]
 ### Typeface
 The following fonts were chosen from Google Fonts to fit the Halloween theme of the project:
 Creeper (url: https://fonts.google.com/specimen/Creepster?query=creepster)
-
+![image](https://github.com/AFairley90/CodeBusters/assets/104565466/1dec953f-c2e3-414a-abde-31be37496c90)
 Frijole (url: https://fonts.google.com/specimen/Frijole? query=frijole)
-
+![image](https://github.com/AFairley90/CodeBusters/assets/104565466/49c64144-046b-48f5-99cd-a7cf8f379a92)
 Nosifer (url: https://fonts.google.com/specimen/Nosifer?query=nosifer)
-
+![image](https://github.com/AFairley90/CodeBusters/assets/104565466/9e49455d-6043-410b-964f-0398cb0736e6)
 Eater: (url: https://fonts.google.com/specimen/Eater?query=eater)
-
+![image](https://github.com/AFairley90/CodeBusters/assets/104565466/dce4dde7-3ea8-4660-a7e4-41646b96940a)
 Astloch (URL: https://fonts.google.com/specimen/Astloch?query=astloch)
-
+![image](https://github.com/AFairley90/CodeBusters/assets/104565466/df366474-d35b-4600-9ab1-7feacf8b0fe8)
 Modern Antiqua (URL: https://fonts.google.com/specimen/Modern+Antiqua?query=modern+antiqua)
- 
+![image](https://github.com/AFairley90/CodeBusters/assets/104565466/23e48cca-e575-43aa-b28c-70d48eb7205d)
 Modern Antiqua was chosen as a typeface for use in chunks of text due to it’s easy readability compared to the others, which will predominately be reserved for titles and headings.
 
 
