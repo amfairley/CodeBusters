@@ -600,8 +600,20 @@ myform.addEventListener("submit", function(event){
   var formData = new FormData(this);
 
   //POST fetch request
-  fetch()
-
+  fetch("dice.php", {
+    method: "post",
+    body: formData
+  })
+  .then (function(response){
+    return response.text();
+  })
+  .then (function (text) {
+    resetForm();
+    console.log(text);
+  })
+  .catch(function (err) {
+    Errors.innerHTML = err;
+  })
 })
 
 // End scores section
