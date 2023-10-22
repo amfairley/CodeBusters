@@ -55,6 +55,7 @@ h1 {
     width: 5%;
     height: 100%;
     margin-bottom: 1%;
+    padding-left: 10px;
 }
 
 #player-lives-bar p {
@@ -183,6 +184,7 @@ a {
 
  .fa-ghost {
    color: #ff6346;
+   padding-left: 10px;
  }
 
  .set-of-rules {
