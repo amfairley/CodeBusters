@@ -57,11 +57,11 @@
           />
         </div>
         <div id="menu-buttons">
-          <button id="volumeButton" class="btn-light btn-lg">
+          <button id="volumeButton" class="btn-light btn-lg" aria-label="volume button">
             <i id="volumeIcon" class="fa-solid fa-volume-high"></i>
           </button>
-          <a href="game.html">
-            <button type="button" class="btn btn-light btn-lg">
+          <a href="game.html" aria-label="play game">
+            <button type="button" class="btn btn-light btn-lg" aria-label="play game button">
               <i class="fa-solid fa-play"></i>
             </button>
           </a>
@@ -70,6 +70,7 @@
             class="btn btn-light btn-lg"
             data-toggle="modal"
             data-target="#rules"
+            aria-label="rules button"
           >
             <i class="fa-solid fa-gamepad"></i>
           </button>
@@ -78,6 +79,7 @@
             class="btn btn-light btn-lg"
             data-toggle="modal"
             data-target="#scoreBoard"
+            aria-label="scoreboard button"
             >
             <i class="fa-solid fa-ranking-star"></i>
           </button>
@@ -87,6 +89,7 @@
             class="btn btn-light btn-lg"
             data-toggle="modal"
             data-target="#monster-verse"
+            aria-label="monster verse"
           >
           <i class="fa-solid fa-earth-europe"></i>
         </button>
@@ -103,7 +106,6 @@
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="rulesLabel"
-                aria-hidden="true"
               >
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -150,7 +152,6 @@
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="scoreBoardLabel"
-                aria-hidden="true"
                 onload="get_scores(list_scores)"
               >
                 <div class="modal-dialog" role="document">
@@ -197,7 +198,6 @@
               tabindex="-1"
               role="dialog"
               aria-labelledby="monster-verselabel"
-              aria-hidden="true"
             >
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
