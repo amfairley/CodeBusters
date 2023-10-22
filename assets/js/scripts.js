@@ -11,7 +11,10 @@ function handleResize() {
   let gameSpeed = 1;
   let gameFrame = 0;
   let maxGhosts = 5;
-  // let LIVES = 3
+  const displayPoints = document.getElementById("ghosts-points");
+  const displayLives = document.getElementById("player-lives");
+  let POINTS = 0
+  let LIVES = 3
 
 
   function hasCollided(centerX1, centerY1, centerX2, centerY2, radius1, radius2) {
@@ -294,6 +297,7 @@ function handleResize() {
       if (wasClicked) {
         enemiesArray.splice(i, 1);
         i--;
+        POINTS+=1;
         wasClicked = false;
         explosions.push(new Explosion(inputs.touchX, inputs.touchY))
         explosions[0].update()
@@ -301,7 +305,10 @@ function handleResize() {
         inputs.clear();
       } else {
         if (hasCollided(mainChar.centerX, mainChar.centerY, enemy.centerX, enemy.centerY, mainChar.radius, enemy.radius)) {
-          console.log("COLISION")
+          if (LIVES === 1){
+            console.log("GAME OVER!!!")
+          }
+          LIVES-=1;
           enemiesArray.splice(i, 1);
           i--;
         }
@@ -334,6 +341,9 @@ function handleResize() {
     if (gameFrame % 10000 === 0){
       max+=1;
     }
+    // update points and lives
+    displayPoints.innerHTML = POINTS;
+    displayLives.innerHTML = LIVES;
   }
   animate();
   
