@@ -37,7 +37,8 @@
     <title>CodeBusters</title>
   </head>
 
-  <body>
+  <body onload="get_scores(list_scores)">
+    
     <!-- Menu -->
     <div class="container-fluid text-center">
       <audio autoplay loop>
@@ -74,15 +75,14 @@
             <i class="fa-solid fa-gamepad"></i>
           </button>
 
-           <!-- PLAY BUTTON-->
-           <a href="game.html" aria-label="play game">
+          <!-- PLAY BUTTON-->
+          <a href="game.html" aria-label="play game">
             <button id="play-button" type="button" aria-label="play game button">
               <i class="fa-solid fa-play"></i>
             </button>
           </a>
 
-           <!-- STORY BUTTON-->
-        </button>
+          <!-- STORY BUTTON-->
           <button 
             type="button"
             class="btn btn-light btn-lg"
@@ -90,26 +90,25 @@
             data-target="#monster-verse"
             aria-label="monster verse"
           >
-          <i class="fa-solid fa-earth-europe"></i>
-        </button>
+            <i class="fa-solid fa-earth-europe"></i>
+          </button>
 
-        <!-- SCOREBOARD BUTTON-->
-        <button 
-        type="button"
-        class="btn btn-light btn-lg"
-        data-toggle="modal"
-        data-target="#scoreBoard"
-        aria-label="scoreboard button"
-        >
-        <i class="fa-solid fa-ranking-star"></i>
-      </button>
+          <!-- SCOREBOARD BUTTON-->
+          <button 
+          type="button"
+          class="btn btn-light btn-lg"
+          data-toggle="modal"
+          data-target="#scoreBoard"
+          aria-label="scoreboard button"
+          >
+            <i class="fa-solid fa-ranking-star"></i>
+          </button>
 
-        </div>
-        
-        
+        </div>  
       </div>
-                <!-- Modal -->
-                <div
+
+      <!-- Modal for RULES -->
+      <div
                 class="modal fade"
                 id="rules"
                 tabindex="-1"
@@ -133,135 +132,137 @@
                       <p class="set-of-rules">
                         <i class="fa-solid fa-ghost"></i> Catch the ghosts by clicking on them. Be careful though: catching the good spirits will cost you points!<br>
 
-                        <i class="fa-solid fa-ghost"></i> Score the most points to become a record breaker. <br />
-                        
-                        <i class="fa-solid fa-ghost"></i> Unlock new levels as you progress. <br>
-                        
-                        <i class="fa-solid fa-ghost"></i> Check the time - how long can you last?
-                      </p>
-                    </div>
-                    <div class="modal-footer">
-                      <!-- Closing button-->
-                      <button
-                        id="close-instructions"
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Back
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-                <!-- ScoreBoard Modal -->
-                <div
-                class="modal fade"
-                id="scoreBoard"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="scoreBoardLabel"
-                onload="get_scores(list_scores)"
-              >
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="scoreBoardLabel">
-                        Top Scores
-                      </h5>
-                    </div>
-                    <div class="modal-body">
-                      <p>
-                      <img id="jack-image" src="assets/images/little-jack.png" alt="image of Jack">
-                      </p>
-                      <div id="error"></div>
-                      <p class="list-of-scores">
-                        <ol id="highscores">
-                          <li><i class="fa-solid fa-ghost"></i></li>
-                          <li><i class="fa-solid fa-ghost"></i></li>
-                          <li><i class="fa-solid fa-ghost"></i></li>
-                          <li><i class="fa-solid fa-ghost"></i></li>
-                          <li><i class="fa-solid fa-ghost"></i></li>
-                        </ol>
-                        <input id="lowscore" type="hidden">
-                      </p>
-                    </div>
-                    <div class="modal-footer">
-                      <!-- Closing button-->
-                      <button
-                        id="close-instructions"
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Back
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Modal -->
-              <div
-              class="modal fade"
-              id="monster-verse"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="monster-verselabel"
+              <i class="fa-solid fa-ghost"></i> Score the most points to become a record breaker. <br />
+              
+              <i class="fa-solid fa-ghost"></i> Unlock new levels as you progress. <br>
+              
+              <i class="fa-solid fa-ghost"></i> Check the time - how long can you last?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <!-- Closing button-->
+            <button
+              id="close-instructions"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
             >
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="monster-verselabel">
-                      Explore the Monster-Verse!
-                    </h5>
-                  </div>
-                  <div class="modal-body">
-                    <p class="monster-description">
-                      In the heart of Pumpkinville, there lived a special 10-year-old boy named Jack. 
-                      Jack had a pumpkin for a head that glowed with warmth and a youthful spirit.
-                      Every evening, his pumpkin head came to life, and he embarked on an adventure! 
-                      On his journey, he'd traverse haunted streets, spooky cities, and eerie forests 
-                      filled with friendly and not-so-friendly entities. <br>
-                      <img class="monster-image" src="assets/images/little-jack.png" alt="Image of the game protagonist Jack">
-                    </p>
-                    <p class="monster-description">
-                      Edwin is the epitome of adorable, with a round, translucent, and almost cloud-like appearance. 
-                      He's always seen sporting a friendly grin that'll melt your heart, and his bright, twinkling eyes exude warmth and kindness. 
-                      Edwin was once a mischievous ghost who just couldn't seem to spook anyone. 
-                      He'd try to rattle chains, make spooky sounds, and sneak up on people, but they'd just chuckle and call him adorable.
-                      One fateful Halloween, he got tangled in his own bedsheet costume, tripped, and bumped into a candy bowl, showering trick-or-treaters with sweets.
-                      The laughter that followed was so infectious that it made him realize his true calling was to spread joy, not fear.
-                      Now, he's determined to make people smile instead of shriek. <br>
-                      <img class="monster-image" src="Edwin the happy ghost image" alt="Image of Edwin the happy Ghost"/>                  
-                    </p>
-                    <p class="monster-description">
-                      Harold is the polar opposite of friendly.
-                      With his mean eyes, pointy teeth, and an eerie, whispery voice, he exudes an aura of malevolence.
-                      Harold was once a greedy, unpleasant individual in the land of the living.
-                      He spent his days scheming and swindling others out of their hard-earned money,
-                      and his nights devising mean-spirited pranks to torment his neighbours.
-                      When he met his untimely demise during a particularly wicked prank, he became a vengeful spirit, 
-                      and now accosts travellers that might happen upon his ghostly gathering grounds. <br>
-                      <img class="monster-image" src="harold the mean ghost" alt="Image of Harold the mean Ghost"/>
-                    </p>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- Closing button-->
-                    <button
-                      id="close-instructions"
-                      type="button"
-                      class="btn btn-secondary"
-                      data-dismiss="modal"
-                    >
-                      Back
-                    </button>
-                  </div>
-                </div>
-              </div>
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Modal for SCOREBOARD -->
+      <div
+        class="modal fade"
+        id="scoreBoard"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="scoreBoardLabel"
+        
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="scoreBoardLabel">
+                Top Scores
+              </h5>
             </div>
+            <div class="modal-body">
+              <p>
+              <img id="jack-image" src="assets/images/little-jack.png" alt="image of Jack">
+              </p>
+              <div id="error"></div>
+              <p class="list-of-scores">
+                <ol id="highscores">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ol>
+                <input id="lowscore" type="hidden">
+              </p>
+            </div>
+            <div class="modal-footer">
+              <!-- Closing button-->
+              <button
+                id="close-instructions"
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Back
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+              
+      <!-- Modal for MONSTERVERSE -->
+      <div
+        class="modal fade"
+        id="monster-verse"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="monster-verselabel"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="monster-verselabel">
+                Explore the Monster-Verse!
+              </h5>
+            </div>
+            <div class="modal-body">
+              <p class="monster-description">
+                In the heart of Pumpkinville, there lived a special 10-year-old boy named Jack. 
+                Jack had a pumpkin for a head that glowed with warmth and a youthful spirit.
+                Every evening, his pumpkin head came to life, and he embarked on an adventure! 
+                On his journey, he'd traverse haunted streets, spooky cities, and eerie forests 
+                filled with friendly and not-so-friendly entities. <br>
+                <img class="monster-image" src="assets/images/little-jack.png" alt="Image of the game protagonist Jack">
+              </p>
+              <p class="monster-description">
+                Edwin is the epitome of adorable, with a round, translucent, and almost cloud-like appearance. 
+                He's always seen sporting a friendly grin that'll melt your heart, and his bright, twinkling eyes exude warmth and kindness. 
+                Edwin was once a mischievous ghost who just couldn't seem to spook anyone. 
+                He'd try to rattle chains, make spooky sounds, and sneak up on people, but they'd just chuckle and call him adorable.
+                One fateful Halloween, he got tangled in his own bedsheet costume, tripped, and bumped into a candy bowl, showering trick-or-treaters with sweets.
+                The laughter that followed was so infectious that it made him realize his true calling was to spread joy, not fear.
+                Now, he's determined to make people smile instead of shriek. <br>
+                <img class="monster-image" src="Edwin the happy ghost image" alt="Image of Edwin the happy Ghost"/>                  
+              </p>
+              <p class="monster-description">
+                Harold is the polar opposite of friendly.
+                With his mean eyes, pointy teeth, and an eerie, whispery voice, he exudes an aura of malevolence.
+                Harold was once a greedy, unpleasant individual in the land of the living.
+                He spent his days scheming and swindling others out of their hard-earned money,
+                and his nights devising mean-spirited pranks to torment his neighbours.
+                When he met his untimely demise during a particularly wicked prank, he became a vengeful spirit, 
+                and now accosts travellers that might happen upon his ghostly gathering grounds. <br>
+                <img class="monster-image" src="harold the mean ghost" alt="Image of Harold the mean Ghost"/>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <!-- Closing button-->
+              <button
+                id="close-instructions"
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Back
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
 
-    <script src="assets/js/index.js"></script>
+    <script src="assets/js/scripts.js"></script>
   </body>
 </html>

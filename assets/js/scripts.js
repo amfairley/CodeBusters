@@ -19,8 +19,8 @@ const backgroundScreens = [
   let maxGhosts = 5;
 let STAGE = 0;
   const startBtn = document.getElementById("start-btn");
-  const restartBtn = document.getElementById("restart-btn");
-  const gameOverDisplay = document.getElementById("game-over");
+  const restartBtn = document.getElementById("end-game");
+  const gameOverDisplay = document.getElementById("gameOver");
   const displayPoints = document.getElementById("ghosts-points");
   const displayLives = document.getElementById("player-lives");
   let POINTS = 0
@@ -381,6 +381,7 @@ goBackToMenuButton.addEventListener('click', function(){
         if (hasCollided(mainChar.centerX, mainChar.centerY, enemy.centerX, enemy.centerY, mainChar.radius, enemy.radius)) {
           if (LIVES === 1){
             gameOverDisplay.style.display = "block";
+            document.getElementById("score").value = POINTS;
             restartBtn.addEventListener("click", () => {
               gameOverDisplay.style.display = "none";
            })
@@ -531,7 +532,46 @@ startTimer = () => {
 //We start the game timer
 startTimer();
 
-// Read scores.json with Fetch API
+
+
+// INDEX SECTION
+
+const audio = document.querySelector('audio');
+const volumeButton = document.getElementById('volumeButton');
+const volumeIcon = document.getElementById('volumeIcon');
+
+// Mute and mute index page
+function toggleAudio() {
+    if (audio.paused) {
+        audio.play();
+        volumeIcon.classList.remove('fa-volume-mute');
+        volumeIcon.classList.add('fa-volume-high');
+    } else {
+        audio.pause();
+        volumeIcon.classList.remove('fa-volume-high');
+        volumeIcon.classList.add('fa-volume-mute');
+    }
+}
+
+volumeButton.addEventListener('click', toggleAudio);
+
+
+// Variables for modal box
+const closeInstructions = document.getElementById('close-instructions');
+const rulesModal = document.getElementById('rules');
+
+// Close instructions when clicking on button
+closeInstructions.onclick = function () {
+    rulesModal.style.display = "none";
+};
+
+
+
+
+
+
+// Start of Score section
+//Read scores.json with Fetch API
 
 const Errors = document.getElementById("error");
 
