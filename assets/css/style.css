@@ -194,6 +194,16 @@ a {
     height: auto;
  }
 
+ /* Go-back-to-menu button in the game page */
+#go-back-menu-container {
+    width: 0.2rem;
+    height: 0.2rem;
+} 
+#go-back-to-menu {
+    padding: 0.2;
+    font-size: 1.5rem;
+    border-radius: 1.3rem;
+}
 
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
