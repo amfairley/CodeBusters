@@ -116,6 +116,16 @@ function handleResize() {
     { img: "assets/images/background3/layer-3g.png", speed: 0.1 },
     { img: "assets/images/background3/layer-4g.png", speed: 0.1 },
     { img: "assets/images/background3/layer-5g.png", speed: 1 },
+  ],
+  [
+    { img: "assets/images/background4/layer-1g.png", speed: 0.0001 },
+    { img: "assets/images/background4/layer-2g.png", speed: 0.0002 },
+    { img: "assets/images/background4/layer-3g.png", speed: 0.0001 },
+    { img: "assets/images/background4/layer-4g.png", speed: 0.0002 },
+    { img: "assets/images/background4/layer-5g.png", speed: 0.05 },
+    { img: "assets/images/background4/layer-6g.png", speed: 0.2 },
+    { img: "assets/images/background4/layer-7g.png", speed: 0.5 },
+    { img: "assets/images/background4/layer-8g.png", speed: 1 },
   ]]
 
   function createBackground(images) {
@@ -126,7 +136,7 @@ function handleResize() {
     });
     return backgrounds;
   }
-  const background = createBackground(scenes[0]);
+  const background = createBackground(scenes[3]);
   // end background
 
   // Create ghosts enemies
