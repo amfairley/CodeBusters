@@ -170,9 +170,13 @@ a {
     text-decoration: none;
 }
 
-/* Instructions container */
+/* Instructions container & Scoreboard container */
 
 #rules {
+    margin-top: 100px;
+}
+
+#scoreBoard {
     margin-top: 100px;
 }
 

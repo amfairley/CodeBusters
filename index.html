@@ -73,7 +73,12 @@
           >
             <i class="fa-solid fa-gamepad"></i>
           </button>
-          <button class="btn btn-light btn-lg">
+          <button 
+            type="button"
+            class="btn btn-light btn-lg"
+            data-toggle="modal"
+            data-target="#scoreBoard"
+            >
             <i class="fa-solid fa-ranking-star"></i>
           </button>
 
@@ -112,6 +117,51 @@
                         <i class="fa-solid fa-ghost"></i> Unlock new levels as you progress. <br>
                         
                         <i class="fa-solid fa-ghost"></i> Check the time - how long can you last?
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <!-- Closing button-->
+                      <button
+                        id="close-instructions"
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <!-- ScoreBoard Modal -->
+                <div
+                class="modal fade"
+                id="scoreBoard"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="scoreBoardLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="scoreBoardLabel">
+                        Top Scores
+                      </h5>
+                    </div>
+                    <div class="modal-body">
+                      <p>
+                      <img id="jack-image" src="assets/images/little-jack.png" alt="image of Jack">
+                      </p>
+                      <p class="list-of-scores">
+                        <ol>
+                          <li><i class="fa-solid fa-ghost"></i></li>
+                          <li><i class="fa-solid fa-ghost"></i></li>
+                          <li><i class="fa-solid fa-ghost"></i></li>
+                          <li><i class="fa-solid fa-ghost"></i></li>
+                          <li><i class="fa-solid fa-ghost"></i></li>
+                        </ol>
                       </p>
                     </div>
                     <div class="modal-footer">
