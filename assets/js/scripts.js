@@ -12,8 +12,8 @@ function handleResize() {
   let gameFrame = 0;
   let maxGhosts = 5;
   const startBtn = document.getElementById("start-btn");
-  const restartBtn = document.getElementById("restart-btn");
-  const gameOverDisplay = document.getElementById("game-over");
+  const restartBtn = document.getElementById("end-game");
+  const gameOverDisplay = document.getElementById("gameOver");
   const displayPoints = document.getElementById("ghosts-points");
   const displayLives = document.getElementById("player-lives");
   let POINTS = 0
@@ -374,6 +374,7 @@ goBackToMenuButton.addEventListener('click', function(){
         if (hasCollided(mainChar.centerX, mainChar.centerY, enemy.centerX, enemy.centerY, mainChar.radius, enemy.radius)) {
           if (LIVES === 1){
             gameOverDisplay.style.display = "block";
+            document.getElementById("score").value = POINTS;
             restartBtn.addEventListener("click", () => {
               gameOverDisplay.style.display = "none";
            })
@@ -518,7 +519,8 @@ startTimer = () => {
 //We start the game timer
 startTimer();
 
-// Read scores.json with Fetch API
+// Start of Score section
+//Read scores.json with Fetch API
 
 const Errors = document.getElementById("error");
 
