@@ -147,7 +147,7 @@ body {
 #menu-buttons .btn,
 #volumeButton {
     background-color: #f4f4f4;
-    color: tomato;
+    color: #262652;
     font-family: 'Creepster', cursive;
     border: white;
     border-radius: 50%;
@@ -160,9 +160,9 @@ body {
 
 #menu-buttons .btn:hover,
 #volumeButton:hover {
-    background-color: #2D244C;
-    color: tomato;
-    border: 2px solid #955637;
+    background-color: #262652;
+    color: #FD6D55;
+    border: 2px solid #FD6D55;
 }
 
 a {
