@@ -129,11 +129,14 @@ body {
     display: flex;
     width: 100%;
     margin: 50px;
+    margin-left: 10px;
     padding-left: 50px;
 }
 
-#logo img {
-    height: 12rem;
+#logo img{
+    width: 80%;
+    height: auto;
+
 }
 
 
@@ -169,7 +172,7 @@ a {
 /* Instructions container */
 
 #rules {
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 /* Closing button for instructions */
@@ -190,3 +193,38 @@ a {
     width: 2.5rem;
     height: auto;
  }
+
+
+/* Media query: tablets and larger (768px and up) */
+@media screen and (min-width: 768px) {
+    
+    /* Index page */
+    #menu-buttons{
+        margin-top: 10%;
+    }
+
+    #logo {
+        
+    }
+
+    #logo img {
+        width: 50%;
+        height: auto;
+    }
+    
+
+}
+
+/* Media query: laptops and larger (992px and up) */
+@media screen and (min-width: 992px) {
+
+    /* Index page */
+    #menu-buttons{
+        margin-top: 12%;
+    }
+
+    #logo img {
+        width: 25%;
+    }
+
+}
