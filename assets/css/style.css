@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Creepster|Frijole|Nosifer|Eater|Astloch');
 
 h1 {
-    color: tomato;
+    color: #FD6D55;
 }
 
 /*game.html styling*/
@@ -117,7 +117,7 @@ body {
 
 /* Index Page */
 #menu {
-    border: 5px solid tomato;
+    border: 5px solid #FD6D55;
     background-color: white;
     position: absolute;
     background-image: url(../images/background/fullbackground.png);
@@ -154,7 +154,7 @@ body {
     background-color: #f4f4f4;
     color: #262652;
     font-family: 'Creepster', cursive;
-    border: white;
+    border: 2px solid #262652;
     border-radius: 50%;
     margin: 10px;
     padding: 10px;
@@ -181,7 +181,7 @@ a {
     background-color: #f4f4f4;
     color: #FD6D55;
     font-family: 'Creepster', cursive;
-    border: 2px #FD6D55;
+    border: 2px solid #FD6D55;
     border-radius: 50%;
     margin: 10px;
     padding: 10px;
