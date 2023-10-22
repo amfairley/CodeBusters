@@ -315,9 +315,9 @@ goBackToMenuButton.addEventListener('click', function(){
         this.width + 10,
         this.height + 20
       );
-      // ctx.beginPath();
-      // ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
-      // ctx.stroke()
+      // // ctx.beginPath();
+      // // ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
+      // // ctx.stroke()
     }
     updateDraw() {
       this.update();
@@ -420,6 +420,7 @@ goBackToMenuButton.addEventListener('click', function(){
     // draw and update main char
     mainChar.updateDraw()
     
+    
     gameFrame--;
     requestAnimationFrame(animate);
     // Create new enemies
@@ -442,6 +443,15 @@ goBackToMenuButton.addEventListener('click', function(){
     displayLives.innerHTML = LIVES;
   }
   animate();
+
+
+  /**
+   * Possible start button?
+   */
+  //startBtn.addEventListener("click", () => {
+  //  animate();
+  //  startBtn.style.display = "none";
+ // })
 
 
   /**
