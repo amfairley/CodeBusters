@@ -71,7 +71,11 @@
     </audio>
 
     <!--<button id="start-btn" class="btn btn-primary">Start Game!</button>-->
-    <!-- ScoreBoard Modal -->
+
+    <!-- Game Canvas-->
+    <canvas id="canvas"></canvas>
+
+      <!-- Game Over Modal TO REVIEW-->
     <div
     class="modal fade"
     id="gameOver"
@@ -91,10 +95,10 @@
             <form id="myform">
               Your name:<br>
               <!-- Player's name-->
-              <input name="player_name" maxlength="20" class="greenBut" type="text" id="player_name" placeholder="Type Your Name" required>
+              <input name="player_name" maxlength="20" type="text" id="player_name" placeholder="Type Your Name" required>
               <!-- Player's Score -->
               <br>Your score:<br>
-              <input name="player_score" class="greenBut" type="number" value=0 id="score" readonly></input><br></h3>
+              <input name="player_score" type="number" value=0 id="score" readonly><br></h3>
               <!-- Submit Button -->
               <button 
                 type="submit"
@@ -104,54 +108,20 @@
                 data-dismiss="modal">End Game</button>
             </form>
           </div>
-        </div>
-      </div>
-  </div>
-
-    <!--<button id="start-btn" class="btn btn-primary">Start Game!</button>-->
-    <!-- ScoreBoard Modal -->
-    <div
-    class="modal fade"
-    id="gameOver"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="gameOverMessage"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="gameOverTitle">
-              Game Over
-            </h5>
-          </div>
-          <div class="modal-body">
-          <!-- Game Form (myform)-->
-            <form id="myform">
-              Your name:<br>
-              <!-- Player's name-->
-              <input name="player_name" maxlength="20" class="greenBut" type="text" id="player_name" placeholder="Type Your Name" required>
-              <!-- Player's Score -->
-              <br>Your score:<br>
-              <input name="player_score" class="greenBut" type="number" value=0 id="score" readonly></input><br></h3>
-              <!-- Submit Button -->
-              <button 
-                type="submit"
-                id="close-instructions"
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal">End Game</button>
-            </form>
+          <div class="modal-footer">
+            <!-- Closing button-->
+            <button
+              id="close-instructions"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Back
+            </button>
           </div>
         </div>
       </div>
-  </div>
-
-    <!--<button id="start-btn" class="btn btn-primary">Start Game!</button>-->
-    <div id="game-over" class="container">
-      <p class="mt-5">Uh-oh, Game Over!</p>
-      <button id="restart-btn" class="btn btn-primary">Play again?</button>
     </div>
-    <canvas id="canvas"></canvas>
 
     <script src="assets/js/scripts.js"></script>
   </body>
