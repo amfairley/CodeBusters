@@ -19,7 +19,11 @@ function toggleAudio() {
   }
 }
 
-volumeButton.addEventListener('click', toggleAudio);
+try {
+  volumeButton.addEventListener('click', toggleAudio);
+} catch (error) {
+  console.log("Volume button not found")
+}
 
 
 // Variables for modal box
@@ -32,9 +36,11 @@ closeInstructions.onclick = function () {
 };
 
 //GAME PAGE
+let pause = false;
 
 function handleResize() {
   // this function redraw the game in the new size
+
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
   const newWidth = window.innerWidth;
@@ -415,6 +421,8 @@ goBackToMenuButton.addEventListener('click', function(){
       } else {
         if (hasCollided(mainChar.centerX, mainChar.centerY, enemy.centerX, enemy.centerY, mainChar.radius, enemy.radius)) {
           if (LIVES === 1){
+            pause = true;
+            console.log("You are dead!")
             gameOverDisplay.style.display = "block";
             document.getElementById("score").value = POINTS;
             restartBtn.addEventListener("click", () => {
@@ -456,7 +464,6 @@ goBackToMenuButton.addEventListener('click', function(){
       explosions[i].draw();
       if (explosions[i].frame > 5) {
         explosions.splice(i, 1);
-        console.log("remove explosion");
       }
       }
     }
@@ -465,7 +472,10 @@ goBackToMenuButton.addEventListener('click', function(){
     
     
     gameFrame--;
-    requestAnimationFrame(animate);
+    if(pause===false){
+      requestAnimationFrame(animate);
+    }
+    
     // Create new enemies
     if (enemiesArray.length < maxGhosts && (gameFrame % 2 == 0)) {
         enemiesArray.push(new Enemy(enemiesArray.length + 1));
@@ -478,11 +488,11 @@ goBackToMenuButton.addEventListener('click', function(){
       gameSpeed+=1;
     }
     // update max enemies
-    if (gameFrame % 300 === 0){
-      max+=1;
+    if (gameFrame % 1000 === 0){
+      maxGhosts+=1;
     }
 // Change stage
-    if (gameFrame % 500 === 0) {
+    if (gameFrame % 10000 === 0) {
       STAGE++;
       background = createBackground(scenes[STAGE])
       levelname1.innerHTML = backgroundScreens[STAGE].name;
