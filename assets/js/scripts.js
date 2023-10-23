@@ -3,7 +3,7 @@
 const audio = document.querySelector('audio');
 const volumeButton = document.getElementById('volumeButton');
 const volumeIcon = document.getElementById('volumeIcon');
-
+let playMusic = true;
 
 
 // Mute and mute index page
@@ -12,10 +12,12 @@ function toggleAudio() {
       audio.play();
       volumeIcon.classList.remove('fa-volume-mute');
       volumeIcon.classList.add('fa-volume-high');
+      playMusic = true;
   } else {
       audio.pause();
       volumeIcon.classList.remove('fa-volume-high');
       volumeIcon.classList.add('fa-volume-mute');
+      playMusic = false;
   }
 }
 
@@ -23,6 +25,12 @@ try {
   volumeButton.addEventListener('click', toggleAudio);
 } catch (error) {
   console.log("Volume button not found")
+  if(playMusic == true){ 
+    audio.play();
+  }else{
+    audio.pause();
+  }
+  
 }
 
 
@@ -498,8 +506,8 @@ goBackToMenuButton.addEventListener('click', function(){
       levelname1.innerHTML = backgroundScreens[STAGE].name;
     }
     // update points and lives
-    displayPoints.innerHTML = POINTS;
-    displayLives.innerHTML = LIVES;
+    displayPoints.innerHTML = ` x ${POINTS}`;
+    displayLives.innerHTML = ` x ${LIVES}`;
   }
   animate();
 
@@ -570,6 +578,12 @@ startTimer = () => {
       hour++;
       minute = 0;
     }
+
+    if(pause===false){
+      console.log(`Game Over ${timer}`);
+      return;
+    }
+
   }, 1000);
 };
 //  end of game timer
