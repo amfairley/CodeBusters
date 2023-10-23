@@ -30,10 +30,10 @@ h1 {
 }
 
 #levelname1 {
-    font-family: Astloch, Georgia, 'Times New Roman', Times, serif;
-    font-weight: 700;
-    font-size: 2.5vw;
-    letter-spacing: 2px;
+    font-family: Creepster;
+    font-weight: 400;
+    font-size: 2vw;
+    letter-spacing: 1px;
     color:  #f7eac8;
     text-shadow: rgb(241, 173, 47) 2px 0 5px;
     text-align: left;
@@ -47,17 +47,26 @@ h1 {
 #player-lives-bar {
     display: flex;
     flex-direction: row;
-    align-items: right;
+    justify-content: flex-start;
+    align-items: center;
 
 }
 #player.lives {
+    white-space: pre;
     align-items: right;
 }
 
-.jackLifeIcon{
-    width: 5%;
-    height: 100%;
+.jackLifeIcon {
+    width: 6%;
+    height: auto;
     margin-bottom: 1%;
+}
+
+#ghost {
+    width: 6%;
+    height: auto;
+    margin-bottom: 1%;
+    margin-right: 15px;
 }
 
 #player-lives-bar p {
@@ -82,14 +91,14 @@ h1 {
     color: #ffffff; 
 }
 
-#ghosts-killed{
+#ghosts-killed-container{
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex-direction: row;
 }
 
-#ghosts-killed p {
+#ghosts-killed-container p {
     white-space: pre;
     font-family: Nosifer;
     font-size: 1rem;
