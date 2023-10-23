@@ -12,12 +12,10 @@ function toggleAudio() {
       audio.play();
       volumeIcon.classList.remove('fa-volume-mute');
       volumeIcon.classList.add('fa-volume-high');
-      playMusic = true;
   } else {
       audio.pause();
       volumeIcon.classList.remove('fa-volume-high');
       volumeIcon.classList.add('fa-volume-mute');
-      playMusic = false;
   }
 }
 
@@ -25,12 +23,7 @@ try {
   volumeButton.addEventListener('click', toggleAudio);
 } catch (error) {
   console.log("Volume button not found")
-  if(playMusic == true){ 
-    audio.play();
-  }else{
-    audio.pause();
-  }
-  
+  console.log(playMusic)
 }
 
 
@@ -408,6 +401,7 @@ goBackToMenuButton.addEventListener('click', function(){
 
   // Main function
   function animate() {
+    
     ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
     background.forEach((back) => {
       back.updateDraw();
@@ -579,9 +573,10 @@ startTimer = () => {
       minute = 0;
     }
 
-    if(pause===false){
-      console.log(`Game Over ${timer}`);
-      return;
+    if(pause == true) {
+      console.log("game over")
+      clearInterval(timerInterval);
+      
     }
 
   }, 1000);
